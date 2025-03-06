@@ -1,0 +1,61 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "theme": {
+    "toggle": "Changer le thème",
+    "menu": "Menu"
+  },
+  "metadata": {
+    "title": "Theo MORIN | Développeur Web",
+    "description": "Portfolio de Théo MORIN, développeur web spécialisé en React et Next.js"
+  },
+  "hero": {
+    "title": "Développeur Web",
+    "highlight": "Créatif",
+    "description": "Je crée des expériences web modernes et interactives",
+    "cta": {
+      "projects": "Voir mes projets",
+      "contact": "Me contacter"
+    },
+    "social": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    },
+    "discover": "Découvrir"
+  },
+  "projects":{
+    "title":"Mes projets"
+  },
+
+"security":{
+  "title":"Sécurité",
+  "soustitre1":"Pratiquant en ",
+  "soustitre2":"cybersécurité",
+  "description1":"Pratiquant en cybersécurité et en protection des systèmes d'information.",
+  "description2":"Compétences en analyse des vulnérabilités et en tests d'intrusion."
+},
+
+
+
+
+  "contact":{
+    "message1":"Discutons de votre projet",
+    "sousmessage":"Vous avez un projet en tête ? N'hésitez pas à me contacter pour en discuter. Je suis toujours à la recherche de nouvelles opportunités passionnantes.",
+    "name":"Nom",
+    "sujet":"Sujet",
+    "message":"Message",
+    "envoyer":"Envoyer",
+    "sending":"Envoi en cours...",
+    "send":"Envoyer le message",
+    "me":"ME",
+    "contact":"Contacter"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue"
+  }
+} 
