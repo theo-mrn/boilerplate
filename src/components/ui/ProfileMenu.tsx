@@ -1,4 +1,5 @@
 import { LogOut, MoveUpRight, Settings} from "lucide-react"
+import { useSession, signOut } from "next-auth/react";
 import Image from "next/image"
 import Link from "next/link"
 
@@ -10,39 +11,30 @@ interface MenuItem {
   external?: boolean
 }
 
-interface Profile01Props {
-  name: string
-  avatar: string
-}
+export default function ProfileMenu() {
+  const { data: session } = useSession();
 
-const defaultProfile = {
-  name: "John Doe",
-  avatar: "/profile/image.jpg",
-} satisfies Required<Profile01Props>
-
-export default function Profile01(
-  {
-  name = defaultProfile.name,
-  avatar = defaultProfile.avatar,
-}: Partial<Profile01Props> = defaultProfile) {
   const menuItems: MenuItem[] = [
-
     {
       label: "Settings",
-      href: "#",
+      href: "/account",
       icon: <Settings className="w-4 h-4" />,
     },
   ]
 
+  if (!session) {
+    return null;
+  }
+  
   return (
-    <div className="w-full max-w-xs mx-auto">
+    <div className="w-full max-w-lg mx-auto rounded-lg bg-background">
       <div className="relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
         <div className="relative px-6 pt-12 pb-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="relative shrink-0">
               <Image
-                src={avatar}
-                alt={name}
+                src={session.user?.image || "/placeholder.svg"}
+                alt={session.user?.name || "User"}
                 width={72}
                 height={72}
                 className="rounded-full ring-4 ring-white dark:ring-zinc-900 object-cover"
@@ -52,7 +44,9 @@ export default function Profile01(
 
             {/* Profile Info */}
             <div className="flex-1">
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">{name}</h2> 
+              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+                {session.user?.name || "User"}
+              </h2> 
             </div>
           </div>
           <div className="h-px bg-zinc-200 dark:bg-zinc-800 my-6" />
@@ -74,7 +68,7 @@ export default function Profile01(
             ))}
 
             <button
-              type="button"
+              onClick={() => signOut({ callbackUrl: "/login" })}
               className="w-full flex items-center justify-between p-2 
                                 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 
                                 rounded-lg transition-colors duration-200"

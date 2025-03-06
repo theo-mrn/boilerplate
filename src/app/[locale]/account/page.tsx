@@ -4,6 +4,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { Bell, Lock, User, Upload, X, Camera, Mail, LogOut } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Header } from "@/components/sections/Header";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -44,12 +45,13 @@ export default function AccountPage() {
     try {
       const res = await fetch(`/api/resend/subscription-status?email=${email}`);
       if (!res.ok) {
-        console.error("Erreur lors de la vérification de l'abonnement");
+        const errorData = await res.json();
+        console.error("Erreur lors de la vérification de l'abonnement:", errorData.error);
         setSubscribed(false);
         return;
       }
       const data = await res.json();
-      setSubscribed(!data.unsubscribed);
+      setSubscribed(data.subscribed);
     } catch (error) {
       console.error("Erreur lors de la vérification de l'abonnement:", error);
       setSubscribed(false);
@@ -115,8 +117,9 @@ export default function AccountPage() {
       } else {
         setPasswordMessage(data.error || "Erreur lors de la mise à jour du mot de passe");
       }
-    } catch (_) {
+    } catch (error) {
       setPasswordMessage("Erreur de connexion");
+      console.error("Erreur de connexion:", error);
     }
 
     setChangingPassword(false);
@@ -124,7 +127,9 @@ export default function AccountPage() {
 
   if (!session) {
     return (
+   
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <Header name="Account" />
         <div className="bg-white p-6 rounded-lg shadow-md">
           <p className="text-center text-gray-600">Veuillez vous connecter pour accéder à votre compte.</p>
         </div>
@@ -133,13 +138,14 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background py-10 px-4 md:px-6">
+    <div className="min-h-screen bg-background py-40 px-4 md:px-6 flex flex-col items-center ">
+      <Header name="Account" />
       <Card className={cn(
         "w-full max-w-4xl mx-auto overflow-hidden transition-all duration-500",
         mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
       )}>
         {/* Profile Header */}
-        <div className="bg-primary px-8 py-12 relative overflow-hidden">
+        <div className="bg-primary px-8 py-8 relative overflow-hidden">
           <div className="flex items-center justify-between relative z-10">
             <div className="flex items-center gap-6">
               {/* Profile Avatar */}

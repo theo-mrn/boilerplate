@@ -160,20 +160,7 @@ export function Header({ name }: HeaderProps) {
                   className="object-cover"
                 />
               </button>
-            ) : (
-              <div className="flex gap-2 ml-auto">
-                <Link href="/register">
-                <Button variant="outline">
-                  S&apos;inscrire
-                </Button>
-                </Link>
-                <Link href="/login">
-                <Button variant="default">
-                  Se connecter
-                </Button>
-                </Link>
-              </div>
-            )}
+            ) : null}
             <AnimatePresence>
               {isProfileOpen && session && (
                 <motion.div

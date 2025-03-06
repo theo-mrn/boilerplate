@@ -1,25 +1,31 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { PrismaClient } from "@prisma/client";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const prisma = new PrismaClient();
 
-export async function GET(req: Request) {
-  const url = new URL(req.url);
-  const email = url.searchParams.get("email");
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const email = searchParams.get("email");
 
   if (!email) {
-    return NextResponse.json({ error: "Email requis" }, { status: 400 });
+    return NextResponse.json({ error: "Email is required" }, { status: 400 });
   }
 
   try {
-    const contact = await resend.contacts.get({
-      email,
-      audienceId: process.env.RESEND_AUDIENCE_ID!,
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: { isSubscribed: true }
     });
-    
-    return NextResponse.json({ unsubscribed: contact?.data?.unsubscribed ?? false }, { status: 200 });
+
+    // If user doesn't exist, return default subscription status (true)
+    return NextResponse.json({
+      subscribed: user?.isSubscribed ?? true,
+    });
   } catch (error) {
-    console.error("Erreur Resend:", error);
-    return NextResponse.json({ error: "Erreur Resend" }, { status: 500 });
+    console.log("Error checking subscription status:", error);
+    return NextResponse.json(
+      { error: "Error checking subscription status" },
+      { status: 500 }
+    );
   }
 }
