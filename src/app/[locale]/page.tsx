@@ -93,6 +93,7 @@ export default function LocalePage() {
       <div ref={projectsRef}>
         <Projects />
       </div>
+      
       <div>
         <GlobeDemo />
       </div>
