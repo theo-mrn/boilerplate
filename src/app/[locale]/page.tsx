@@ -3,11 +3,8 @@
 import { useRef } from "react"
 import { Header } from "@/components/sections/Header"
 import { Hero } from "@/components/sections/Hero"
-import { Projects } from "@/components/sections/Projects"
 import { Contact } from "@/components/sections/Contact"
-import { GlobeDemo } from "@/components/sections/cyber"
 import { Footer } from "@/components/sections/Footer"
-import { About } from "@/components/sections/About"
 import { ScrollProgress } from "@/components/magicui/scroll-progress"
 import { DotPattern } from "@/components/magicui/dot-pattern"
 import BackToTop from "@/components/magicui/back-to-top"
@@ -15,7 +12,6 @@ import { cn } from "@/lib/utils"
 
 export default function LocalePage() {
   const homeRef = useRef<HTMLDivElement>(null!)
-  const aboutRef = useRef<HTMLDivElement>(null!)
   const projectsRef = useRef<HTMLDivElement>(null!)
   const contactRef = useRef<HTMLDivElement>(null!)
 
@@ -28,9 +24,7 @@ export default function LocalePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <ScrollProgress className="top-[69px]" />
-      <Header 
-        name={"Home"}
-      />
+      <Header />
       <div ref={homeRef}>
         <Hero handleScroll={handleScroll} refs={{ projectsRef, contactRef }} />
       </div>
@@ -45,16 +39,8 @@ export default function LocalePage() {
           "[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
         )}
       />
-      <div className="-z-50" ref={aboutRef}>
-        <About />
-      </div>
-      <div ref={projectsRef}>
-        <Projects />
-      </div>
-      
-      <div>
-        <GlobeDemo />
-      </div>
+ 
+     
       <div ref={contactRef}>
         <Contact />
       </div>

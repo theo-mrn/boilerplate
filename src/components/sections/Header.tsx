@@ -11,13 +11,11 @@ import { locales } from '@/i18n/settings'
 import { Link } from '@/i18n/navigation'
 import ProfileMenu from "@/components/ui/ProfileMenu"
 import Image from "next/image"
-
+import { config } from "@/app/[locale]/config"
 // Définition du type HeaderProps
-interface HeaderProps {
-  name: string; // Vous pouvez ajouter d'autres propriétés si nécessaire
-}
 
-export function Header({ name }: HeaderProps) {
+
+export function Header() {
   const t = useTranslations('navigation')
   const tTheme = useTranslations('theme')
   const [isDarkMode, setIsDarkMode] = useState(true)
@@ -47,9 +45,9 @@ export function Header({ name }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b">
       <div className=" mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold">{name}</h1>
+        <h1 className="text-xl font-bold">{config.title}</h1>
         <nav className="flex space-x-8">
-          <Link href="/" className="text-sm font-medium">{t('home')}</Link>
+          <Link href="/dashboard" className="text-sm font-medium">Dashboard</Link>
           <Link href="/about" className="text-sm font-medium">{t('about')}</Link>
           <Link href="/projects" className="text-sm font-medium">{t('projects')}</Link>
           <Link href="/contact" className="text-sm font-medium">{t('contact')}</Link>
@@ -154,7 +152,7 @@ export function Header({ name }: HeaderProps) {
               >
                 <Image
                   alt="User"
-                  src={session?.user?.image || "/profile/image.jpg"}
+                  src={session?.user?.image || "/placeholder.svg"}
                   width={32}
                   height={32}
                   className="object-cover"

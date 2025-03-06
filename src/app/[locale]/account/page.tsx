@@ -129,7 +129,7 @@ export default function AccountPage() {
     return (
    
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <Header name="Account" />
+        <Header/>
         <div className="bg-white p-6 rounded-lg shadow-md">
           <p className="text-center text-gray-600">Veuillez vous connecter pour accéder à votre compte.</p>
         </div>
@@ -139,7 +139,7 @@ export default function AccountPage() {
 
   return (
     <div className="min-h-screen bg-background py-40 px-4 md:px-6 flex flex-col items-center ">
-      <Header name="Account" />
+      <Header/>
       <Card className={cn(
         "w-full max-w-4xl mx-auto overflow-hidden transition-all duration-500",
         mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",

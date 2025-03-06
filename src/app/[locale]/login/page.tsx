@@ -51,7 +51,7 @@ export default function LoginPage() {
       {/* Image Section */}
       <div className="relative hidden lg:block">
         <Image
-          src="/VTT/img1.jpg"
+          src="/placeholder.svg"
           alt="Login illustration"
           fill
           className="object-cover"

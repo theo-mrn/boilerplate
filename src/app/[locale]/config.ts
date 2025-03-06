@@ -1,4 +1,5 @@
 export const config = {
+  title:"Nom du site",
   name: "Theo MORIN",
   email: "contact@theomorin.com",
   github: "https://github.com/theo-mrn",

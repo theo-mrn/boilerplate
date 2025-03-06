@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Github, Linkedin } from "lucide-react"
 import { TypewriterEffect } from "../ui/typewriter-effect";
-import { config } from "@/app/config";
+import { config } from "@/app/[locale]/config";
 import { useContactForm } from "@/hooks/useContactForm";
 import { useTranslations } from 'next-intl'
 

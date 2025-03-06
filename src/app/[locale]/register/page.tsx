@@ -57,17 +57,6 @@ export default function RegisterPage() {
   return (
     <div className="grid lg:grid-cols-2 w-full min-h-screen">
       <Header name="Register"/>
-      {/* Image Section */}
-      <div className="relative hidden lg:block">
-        <Image
-          src="/VTT/img1.jpg"
-          alt="Register illustration"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
-      
       {/* Form Section */}
       <div className="flex items-center justify-center p-8">
         <form onSubmit={handleRegister} className="w-full max-w-md space-y-6">
@@ -143,6 +132,17 @@ export default function RegisterPage() {
             </Link>
           </div>
         </form>
+      </div>
+
+      {/* Image Section */}
+      <div className="relative hidden lg:block">
+        <Image
+          src="/placeholder.svg"
+          alt="Register illustration"
+          fill
+          className="object-cover"
+          priority
+        />
       </div>
     </div>
   );

@@ -2,10 +2,9 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin,  ChevronDown } from "lucide-react"
+import {ChevronDown } from "lucide-react"
 import { Spotlight } from "@/components/ui/spotlight-new";
 import Image from "next/image";
-import { config } from "@/app/config";
 import { useTranslations } from 'next-intl'
 
 
@@ -77,38 +76,17 @@ export function Hero({ handleScroll, refs }: HeroProps) {
               transition={{ duration: 0.5, delay: 0.8 }}
               className="flex items-center gap-6 pt-2"
             >
-              <a
-                href={config.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <div className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center hover:border-primary hover:scale-110 transition-all">
-                  <Github size={20} />
-                </div>
-                <span className="sr-only">{t('social.github')}</span>
-              </a>
-              <a
-                href={config.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <div className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center hover:border-primary hover:scale-110 transition-all">
-                  <Linkedin size={20} />
-                </div>
-                <span className="sr-only">{t('social.linkedin')}</span>
-             </a>
+         
             </motion.div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            className="relative aspect-square max-w-md mx-auto overflow-hidden rounded-full"
+            className="relative aspect-square max-w-md mx-auto overflow-hidden rounded-lg"
           >
             <Image
-              src="/profile/image.jpg"
+              src="/placeholder.svg"
               alt="Portrait"
               className="object-cover w-full h-full filter brightness-100"
               width={500}
