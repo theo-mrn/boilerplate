@@ -8,21 +8,37 @@ import Link from 'next/link'
 import ProfileMenu from "@/components/ui/ProfileMenu"
 import Image from "next/image"
 import { ModeToggle } from "@/components/ui/mode-toggle"
+import { Package } from "lucide-react"
 
-export function Header() {
+interface HeaderProps {
+  variant?: 'default' | 'dashboard'
+}
+
+export function Header({ variant = 'default' }: HeaderProps) {
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const { data: session } = useSession()
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b">
       <div className="mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold">Théo MORIN</h1>
-        <nav className="flex space-x-8">
-          <Link href="/dashboard" className="text-sm font-medium">Dashboard</Link>
-          <Link href="/about" className="text-sm font-medium">À propos</Link>
-          <Link href="/projects" className="text-sm font-medium">Projets</Link>
-          <Link href="/contact" className="text-sm font-medium">Contact</Link>
-        </nav>
+        {variant === 'dashboard' ? (
+          <Link href="/dashboard" className="flex items-center gap-2 text-lg font-semibold">
+            <Package className="h-6 w-6" />
+            <span>FacturePro</span>
+          </Link>
+        ) : (
+          <h1 className="text-xl font-bold">Théo MORIN</h1>
+        )}
+        
+        {variant === 'default' && (
+          <nav className="flex space-x-8">
+            <Link href="/dashboard" className="text-sm font-medium">Dashboard</Link>
+            <Link href="/about" className="text-sm font-medium">À propos</Link>
+            <Link href="/projects" className="text-sm font-medium">Projets</Link>
+            <Link href="/contact" className="text-sm font-medium">Contact</Link>
+          </nav>
+        )}
+
         <div className="flex items-center gap-2">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
