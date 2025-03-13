@@ -3,27 +3,18 @@
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import React, { useEffect, useState } from 'react'
-import { useTranslations } from 'next-intl'
-import { usePathname } from 'next/navigation'
 import { useSession } from "next-auth/react"
-
-import { locales } from '@/i18n/settings'
-import { Link } from '@/i18n/navigation'
+import Link from 'next/link'
 import ProfileMenu from "@/components/ui/ProfileMenu"
 import Image from "next/image"
 
-// Définition du type HeaderProps
 interface HeaderProps {
-  name: string; // Vous pouvez ajouter d'autres propriétés si nécessaire
+  name: string;
 }
 
 export function Header({ name }: HeaderProps) {
-  const t = useTranslations('navigation')
-  const tTheme = useTranslations('theme')
   const [isDarkMode, setIsDarkMode] = useState(true)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
-  const pathname = usePathname()
-  const currentLocale = pathname.split('/')[1] || 'fr'
   const { data: session } = useSession()
 
   useEffect(() => {
@@ -46,32 +37,15 @@ export function Header({ name }: HeaderProps) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b">
-      <div className=" mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="mx-auto px-6 py-4 flex justify-between items-center">
         <h1 className="text-xl font-bold">{name}</h1>
         <nav className="flex space-x-8">
-          <Link href="/" className="text-sm font-medium">{t('home')}</Link>
-          <Link href="/about" className="text-sm font-medium">{t('about')}</Link>
-          <Link href="/projects" className="text-sm font-medium">{t('projects')}</Link>
-          <Link href="/contact" className="text-sm font-medium">{t('contact')}</Link>
+          <Link href="/" className="text-sm font-medium">Accueil</Link>
+          <Link href="/about" className="text-sm font-medium">À propos</Link>
+          <Link href="/projects" className="text-sm font-medium">Projets</Link>
+          <Link href="/contact" className="text-sm font-medium">Contact</Link>
         </nav>
         <div className="flex items-center gap-2">
-          <div className="flex gap-2">
-            {locales.map((locale) => {
-              const isActive = currentLocale === locale
-              return (
-                <Link
-                  key={locale}
-                  href="/"
-                  locale={locale}
-                  className={`text-sm font-medium ${
-                    isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'
-                  }`}
-                >
-                  {locale.toUpperCase()}
-                </Link>
-              )
-            })}
-          </div>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -79,7 +53,7 @@ export function Header({ name }: HeaderProps) {
             className="md:hidden"
           >
             <Button variant="ghost" size="icon">
-              <span className="sr-only">{tTheme('menu')}</span>
+              <span className="sr-only">Menu</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -107,7 +81,7 @@ export function Header({ name }: HeaderProps) {
               size="icon"
               onClick={toggleTheme}
             >
-              <span className="sr-only">{tTheme('toggle')}</span>
+              <span className="sr-only">Changer le thème</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

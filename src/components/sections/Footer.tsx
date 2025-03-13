@@ -1,4 +1,4 @@
-import { config } from "@/app/[locale]/config";
+import { config } from "@/app/config";
 
 
 export function Footer() {

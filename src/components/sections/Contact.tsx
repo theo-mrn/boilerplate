@@ -4,16 +4,11 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Github, Linkedin } from "lucide-react"
-import { TypewriterEffect } from "../ui/typewriter-effect";
-import { config } from "@/app/[locale]/config";
-import { useContactForm } from "@/hooks/useContactForm";
-import { useTranslations } from 'next-intl'
-
-
+import { TypewriterEffect } from "../ui/typewriter-effect"
+import { config } from "@/app/config"
+import { useContactForm } from "@/hooks/useContactForm"
 
 export function Contact() {
-  const t = useTranslations('contact')
-
   const {
     formData,
     isSubmitting,
@@ -23,10 +18,10 @@ export function Contact() {
 
   const words = [
     {
-      text: t('me'),
+      text: "Me",
     },
     {
-      text: t('contact'),
+      text: "Contacter",
     },
   ];
 
@@ -41,7 +36,6 @@ export function Contact() {
           className="flex flex-col items-center text-center mb-12"
         >
           <TypewriterEffect words={words} />
-
           <div className="w-20 h-1 bg-primary/50 rounded-full mt-4" />
         </motion.div>
 
@@ -53,9 +47,9 @@ export function Contact() {
             viewport={{ once: true, margin: "-100px" }}
             className="space-y-6"
           >
-            <h3 className="text-2xl font-bold">{t('message1')}</h3>
+            <h3 className="text-2xl font-bold">Parlons de votre projet</h3>
             <p className="text-muted-foreground">
-              {t('sousmessage')}
+              N&apos;hésitez pas à me contacter pour discuter de vos projets ou pour toute question.
             </p>
             <div className="space-y-4 pt-4">
               <div className="flex items-center gap-4">
@@ -113,11 +107,11 @@ export function Contact() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium">
-                        {t('name')}
+                        Nom
                       </label>
                       <Input 
                         id="name" 
-                        placeholder={t('name')} 
+                        placeholder="Votre nom" 
                         value={formData.name}
                         onChange={handleChange}
                         required
@@ -126,11 +120,11 @@ export function Contact() {
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="subject" className="text-sm font-medium">
-                      {t('sujet')}
+                      Sujet
                     </label>
                     <Input 
                       id="subject" 
-                      placeholder={t('sujet')} 
+                      placeholder="Sujet de votre message" 
                       value={formData.subject}
                       onChange={handleChange}
                       required
@@ -138,11 +132,11 @@ export function Contact() {
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium">
-                      {t('message')}
+                      Message
                     </label>
                     <Textarea 
                       id="message" 
-                      placeholder={t('message')} 
+                      placeholder="Votre message" 
                       rows={5} 
                       value={formData.message}
                       onChange={handleChange}
@@ -150,7 +144,7 @@ export function Contact() {
                     />
                   </div>
                   <Button type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? t('sending') : t('send')}
+                    {isSubmitting ? "Envoi en cours..." : "Envoyer"}
                   </Button>
                 </form>
               </CardContent>

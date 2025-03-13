@@ -2,11 +2,9 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import {ChevronDown } from "lucide-react"
-import { Spotlight } from "@/components/ui/spotlight-new";
-import Image from "next/image";
-import { useTranslations } from 'next-intl'
-
+import { ChevronDown } from "lucide-react"
+import { Spotlight } from "@/components/ui/spotlight-new"
+import Image from "next/image"
 
 interface HeroProps {
   handleScroll: (ref: React.RefObject<HTMLDivElement>) => void
@@ -17,7 +15,6 @@ interface HeroProps {
 }
 
 export function Hero({ handleScroll, refs }: HeroProps) {
-  const t = useTranslations('hero')
   const { projectsRef, contactRef } = refs
   const { scrollYProgress } = useScroll()
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
@@ -25,7 +22,6 @@ export function Hero({ handleScroll, refs }: HeroProps) {
 
   return (
     <section className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
-      
       <motion.div style={{ opacity, scale }} className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-background z-0" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.1),transparent_50%)]" />
@@ -46,7 +42,7 @@ export function Hero({ handleScroll, refs }: HeroProps) {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-4xl md:text-6xl font-bold tracking-tight"
               >
-                {t('title')} <span className="text-primary">{t('highlight')}</span>
+                Développeur Web <span className="text-primary">Full Stack</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -54,7 +50,7 @@ export function Hero({ handleScroll, refs }: HeroProps) {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="text-xl text-muted-foreground"
               >
-                {t('description')}
+                Je crée des applications web modernes et performantes avec React et Next.js
               </motion.p>
             </div>
             <motion.div
@@ -64,10 +60,10 @@ export function Hero({ handleScroll, refs }: HeroProps) {
               className="flex flex-col sm:flex-row gap-4"
             >
               <Button onClick={() => handleScroll(projectsRef)} size="lg">
-                {t('cta.projects')}
+                Voir mes projets
               </Button>
               <Button onClick={() => handleScroll(contactRef)} variant="outline" size="lg">
-                {t('cta.contact')}
+                Me contacter
               </Button>
             </motion.div>
             <motion.div
@@ -76,7 +72,6 @@ export function Hero({ handleScroll, refs }: HeroProps) {
               transition={{ duration: 0.5, delay: 0.8 }}
               className="flex items-center gap-6 pt-2"
             >
-         
             </motion.div>
           </motion.div>
           <motion.div
@@ -100,11 +95,10 @@ export function Hero({ handleScroll, refs }: HeroProps) {
           transition={{ duration: 0.5, delay: 1 }}
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="text-sm text-muted-foreground">{t('discover')}</span>
+          <span className="text-sm text-muted-foreground">Découvrir</span>
           <ChevronDown className="animate-bounce text-muted-foreground" size={24} />
         </motion.div>
       </div>
-      
     </section>
   )
 } 
