@@ -3,6 +3,7 @@ const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com'],
   },
+  output: 'standalone',
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
